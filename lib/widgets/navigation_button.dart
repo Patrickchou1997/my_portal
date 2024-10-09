@@ -19,16 +19,22 @@ class NavigationButton extends StatelessWidget {
     // Get the current theme to determine which styles to use
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
 
+    // Determine colors based on the current theme
+    final backgroundColor = isActive
+        ? (isDarkMode
+            ? DarkStyles.defaultYellowColor
+            : LightStyles.defaultYellowColor)
+        : (isDarkMode
+            ? DarkStyles.defaultLightWhiteColor
+            : LightStyles.defaultLightWhiteColor);
+
+    final iconColor =
+        isActive ? (isDarkMode ? Colors.black : Colors.white) : Colors.grey;
+
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
       decoration: BoxDecoration(
-        color: isActive
-            ? (isDarkMode
-                ? DarkStyles.defaultYellowColor
-                : LightStyles.defaultYellowColor)
-            : (isDarkMode
-                ? DarkStyles.defaultLightWhiteColor
-                : LightStyles.defaultLightWhiteColor),
+        color: backgroundColor,
         shape: BoxShape.circle,
       ),
       child: IconButton(
@@ -36,9 +42,7 @@ class NavigationButton extends StatelessWidget {
         icon: Icon(
           icon,
           size: 20,
-          color: isActive
-              ? (isDarkMode ? Colors.black : Colors.white)
-              : Colors.grey,
+          color: iconColor,
         ),
       ),
     );

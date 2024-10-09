@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_portal/layout/app_layout.dart';
+import 'package:my_portal/styles/dark_styles.dart';
 import 'package:my_portal/styles/light_styles.dart';
 
 void main() {
@@ -36,8 +37,8 @@ class _MyAppState extends State<MyApp> {
       ),
       darkTheme: ThemeData(
         brightness: Brightness.dark,
-        scaffoldBackgroundColor: Colors.black,
-        scrollbarTheme: LightStyles.scrollbarTheme,
+        scaffoldBackgroundColor: DarkStyles.scaffoldBackgroundColor,
+        scrollbarTheme: DarkStyles.scrollbarTheme,
       ),
       themeMode: _themeMode, // Use the current theme mode
       home: MyHomePage(title: 'Page', toggleTheme: _toggleTheme),
@@ -60,7 +61,6 @@ class _MyHomePageState extends State<MyHomePage> {
   void onTabSelected(int index) {
     setState(() {
       _activeTab = index;
-      print(_activeTab);
       if (_activeTab == 4) {
         widget.toggleTheme();
       }
